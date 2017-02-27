@@ -51,5 +51,15 @@ public class TrainSystemTest {
 		Assert.assertEquals(true, Math.abs(-1.0 - controller.getReferenceSpeed()) < epsilon);
 	}
 
+	@Test
+	public void test3() { //max speed
+		sensor.overrideSpeedLimit(5.0);
+		user.overrideJoystickPosition(4.0);
+		controller.followSpeed();
+		user.overrideJoystickPosition(5.0);
+		controller.followSpeed();
+		Assert.assertEquals(true, Math.abs(5.0 - controller.getReferenceSpeed()) < epsilon);
+	}
+
 	
 }
