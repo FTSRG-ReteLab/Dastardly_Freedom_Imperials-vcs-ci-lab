@@ -14,6 +14,7 @@ public class TrainSystemTest {
 	TrainController controller;
 	TrainSensor sensor;
 	TrainUser user;
+	double epsilon = 0.1;
 	
 	@Before
 	public void before() {
@@ -22,32 +23,32 @@ public class TrainSystemTest {
 		sensor = system.getSensor();
 		user = system.getUser();
 
-		sensor.overrideSpeedLimit(50);
+		sensor.overrideSpeedLimit(50.0);
 	}
 	
 	@Test
 	public void test1() {
-		sensor.overrideSpeedLimit(10);
+		sensor.overrideSpeedLimit(10.0);
 
-		Assert.assertEquals(0, controller.getReferenceSpeed());
+		Assert.assertEquals(true, Math.abs(0.0 - controller.getReferenceSpeed()) < epsilon);
 		
 		user.overrideJoystickPosition(5);
 
 		controller.followSpeed();
-		Assert.assertEquals(5, controller.getReferenceSpeed());
+		Assert.assertEquals(true, Math.abs(5.0 - controller.getReferenceSpeed()) < epsilon);
 		controller.followSpeed();
-		Assert.assertEquals(10, controller.getReferenceSpeed());
+		Assert.assertEquals(true, Math.abs(10.0 - controller.getReferenceSpeed()) < epsilon);
 		controller.followSpeed();
-		Assert.assertEquals(10, controller.getReferenceSpeed());
+		Assert.assertEquals(true, Math.abs(10.0 - controller.getReferenceSpeed()) < epsilon);
 	}
 
 	@Test
 	public void test2() {
-		user.overrideJoystickPosition(4);
+		user.overrideJoystickPosition(4.0);
 		controller.followSpeed();
-		user.overrideJoystickPosition(-5);
+		user.overrideJoystickPosition(-5.0);
 		controller.followSpeed();
-		Assert.assertEquals(0, controller.getReferenceSpeed());
+		Assert.assertEquals(true, Math.abs(-1.0 - controller.getReferenceSpeed()) < epsilon);
 	}
 
 	

@@ -6,7 +6,7 @@ import hu.bme.mit.train.interfaces.TrainUser;
 public class TrainUserImpl implements TrainUser {
 
 	private TrainController controller;
-	private int joystickPosition;
+	private double joystickPosition;
 
 	public TrainUserImpl(TrainController controller) {
 		this.controller = controller;
@@ -18,12 +18,12 @@ public class TrainUserImpl implements TrainUser {
 	}
 
 	@Override
-	public int getJoystickPosition() {
+	public double getJoystickPosition() {
 		return joystickPosition;
 	}
 
 	@Override
-	public void overrideJoystickPosition(int joystickPosition) {
+	public void overrideJoystickPosition(double joystickPosition) {
 		this.joystickPosition = joystickPosition;
 		controller.setJoystickPosition(joystickPosition);
 	}
