@@ -2,5 +2,7 @@
   "language": "java",
   "group": "stable",
   "dist": "precise",
-  "os": "linux"
+  "os": "linux",
+  jdk:
+  - oraclejdk8
 }
