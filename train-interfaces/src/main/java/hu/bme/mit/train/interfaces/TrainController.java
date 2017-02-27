@@ -10,4 +10,6 @@ public interface TrainController {
 
 	void setJoystickPosition(double joystickPosition);
 
+	boolean isEmptyTacho();
+
 }
